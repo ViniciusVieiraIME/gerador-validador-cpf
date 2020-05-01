@@ -4,25 +4,22 @@ node_js:
 
 jobs:
   include:
-    - stage: checks
-      script: npm run check-formatting
-      script: npm run check-typing
+    - stage: Checks
+      script:
+      # - name: Check Doc links
+        - gem install awesome_bot
+        - awesome_bot *.md --allow-redirect --white-list travis-ci,packagephobia.now
 
-    - stage: test
-      script: npm run check-typing
-    #   - name: Check Doc links
-    #     script:
-    #       - gem install awesome_bot
-    #       - awesome_bot *.md --allow-redirect --white-list travis-ci,packagephobia.now
-    #   - name: Check Formatting
-    #     script: npm run check-formatting
-    #   - name: Check Typing
-    #     script: npm run check-typing
+      # - name: Check Formatting
+        -npm run check-formatting
+
+      # - name: Check Typing
+        - npm run check-typing
     #   - name: Lint
     #     script: npm run lint
     #     - name: Check Prepublish
     #     script: npm run prepublishOnly
-    # - stage: tests
+    # - stage: Tests
     #   - name: Run Unit Test, generate coverage and publish to coveralls
     #     if: (branch = master)
     #     script: npm run test:coverage & npm run coveralls
@@ -32,6 +29,7 @@ jobs:
     #   - name: Run Mutation Tests and publish reports
     #     if: (branch = master)
     #     script: npm run test:mutation-report"
-    # - stage: publish
-    #   name: 'Publish to gh-pages'
-    #   script: echo "Some console message"
+    - stage: publish
+      name: 'Publish to gh-pages'
+      script:
+        - echo "Some console message"
