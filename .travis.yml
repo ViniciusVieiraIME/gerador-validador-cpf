@@ -10,14 +10,15 @@ jobs:
       #   - gem install awesome_bot
       #   - awesome_bot *.md --allow-redirect --white-list travis-ci,packagephobia.now
 
-      # name: Check Formatting
-      script: npm run check-formatting
-
       # name: Check Typing
       script: npm run check-typing
 
+      # name: Check Formatting
+      script: npm run check-formatting
+
+
       # name: Lint
-      # script: npm run lint
+      script: npm run lint
 
       # name: Check Prepublish
       # script: npm run prepublishOnly
