@@ -10,17 +10,17 @@ jobs:
       #   - awesome_bot *.md --allow-redirect --white-list travis-ci,packagephobia.now
       #   name: Check Doc links
 
-      - script: npm run check-formatting
-        name: Check Formatting
+      name: Check Formatting
+      script: npm run check-formatting
 
-      - script: npm run check-typing
-        name: Check Typing
+      name: Check Typing
+      script: npm run check-typing
 
-      - script: npm run lint
-        name: Lint
+      name: Lint
+      script: npm run lint
 
-      - script: npm run prepublishOnly
-        name: Check Prepublish
+      name: Check Prepublish
+      script: npm run prepublishOnly
 
     # - stage: Tests
     #   if: branch = master
@@ -40,5 +40,4 @@ jobs:
 
     - stage: Publish
       name: 'Publish to gh-pages'
-      script:
-        - echo "Some console message"
+      script: echo "Some console message"
