@@ -5,45 +5,37 @@ node_js:
 jobs:
   include:
     - stage: Checks
-      script:
+      - script:
         - gem install awesome_bot
         - awesome_bot *.md --allow-redirect --white-list travis-ci,packagephobia.now
         name: Check Doc links
 
-      script:
-        - npm run check-formatting
+      - script: npm run check-formatting
         name: Check Formatting
 
-      script:
-        - npm run check-typing
+      - script: npm run check-typing
         name: Check Typing
 
-      script:
-        - npm run lint
+      - script: npm run lint
         name: Lint
 
-      script:
-        - npm run prepublishOnly
+      - script: npm run prepublishOnly
         name: Check Prepublish
 
     - stage: Tests
       if: branch = master
-      script:
-        - npm run test:coverage & npm run coveralls
+      - script: npm run test:coverage & npm run coveralls
         name: Run Unit Tests, generate coverage and publish to coveralls
 
-      script:
-        - npm run test:mutation-report"
+      - script: npm run test:mutation-report"
         name: Run Mutation Tests and publish reports
 
     - stage: Tests
       if: NOT branch = master
-      script:
-        - npm run test
+      - script: npm run test
         name: Run Unit Tests
 
-        script:
-        - npm run test:mutation
+      - script: npm run test:mutation
         name: Run Mutation Tests
 
     - stage: Publish
