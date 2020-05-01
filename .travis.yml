@@ -5,10 +5,10 @@ node_js:
 jobs:
   include:
     - stage: Checks
-    # - script:
-    #     - gem install awesome_bot
-    #     - awesome_bot *.md --allow-redirect --white-list travis-ci,packagephobia.now
-    #   name: Check Doc links
+    - script:
+        - gem install awesome_bot
+        - awesome_bot *.md --allow-redirect --white-list travis-ci,packagephobia.now
+      name: Check Doc links
 
     - script: npm run check-typing
       name: Check Typing
@@ -30,13 +30,13 @@ jobs:
     #   - script: npm run test:mutation-report"
     #     name: Run Mutation Tests and publish reports
     - stage: Tests
-      if: NOT branch = master
-
     - script: npm run test
       name: Run Unit Tests
+      if: NOT branch = master
 
     - script: npm run test:mutation
       name: Run Mutation Tests
+      if: NOT branch = master
 
     - stage: Publish
       name: 'Publish to gh-pages'
