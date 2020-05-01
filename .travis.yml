@@ -23,17 +23,17 @@ jobs:
         script: npm run prepublishOnly
 
     - stage: tests
-        - name: Run Unit Test, generate coverage and publish to coveralls
-          if: (branch = master)
-          script: npm run test:coverage & npm run coveralls
+      - name: Run Unit Test, generate coverage and publish to coveralls
+        if: (branch = master)
+        script: npm run test:coverage & npm run coveralls
 
-        - name: Run Unit Tests
-          if: (NOT branch = master)
-          script: npm run test
+      - name: Run Unit Tests
+        if: (NOT branch = master)
+        script: npm run test
 
-        - name: Run Mutation Tests and publish reports
-          if: (branch = master)
-          script: npm run test:mutation-report"
+      - name: Run Mutation Tests and publish reports
+        if: (branch = master)
+        script: npm run test:mutation-report"
 
     - stage: publish
       name: 'Publish to gh-pages'
