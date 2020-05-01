@@ -23,6 +23,7 @@ jobs:
         script: npm run prepublishOnly
 
   - stage: tests
+    include:
       - name: Run Unit Test, generate coverage and publish to coveralls
         if: (branch = master)
         script: npm run test:coverage & npm run coveralls
