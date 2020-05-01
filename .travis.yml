@@ -2,6 +2,12 @@ language: node_js
 node_js:
   - 'lts/*'
 
+stages:
+  - Checks
+  - name: Tests
+    if: NOT branch = master
+  - Publish
+
 jobs:
   include:
     - stage: Checks
@@ -32,11 +38,9 @@ jobs:
     - stage: Tests
     - script: npm run test
       name: Run Unit Tests
-      if: NOT branch = master
 
     - script: npm run test:mutation
       name: Run Mutation Tests
-      if: NOT branch = master
 
     - stage: Publish
       name: 'Publish to gh-pages'
