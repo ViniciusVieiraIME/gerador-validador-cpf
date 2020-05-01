@@ -8,7 +8,7 @@ jobs:
       script: npm run check-formatting
       script: npm run check-typing
 
-    - stage: checks
+    - stage: test
       script: npm run check-typing
     #   - name: Check Doc links
     #     script:
