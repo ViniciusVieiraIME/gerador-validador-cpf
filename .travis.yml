@@ -3,16 +3,16 @@ node_js:
   - 'lts/*'
 
 stages:
-  - checks
-  - name: tests
+  - 'checks'
+  - name: 'tests'
     if: NOT branch = master
-  - name: tests and reports
+  - name: 'tests and reports'
     if: branch = master
-  - publish
+  - 'publish'
 
 jobs:
   include:
-    - stage: checks
+    - stage: 'checks'
     - script:
         - gem install awesome_bot
         - awesome_bot *.md --allow-redirect --white-list travis-ci,packagephobia.now
@@ -30,20 +30,20 @@ jobs:
     - script: npm run prepublishOnly
       name: Check Prepublish
 
-    - stage: tests and reports
+    - stage: 'tests and reports'
     - script: npm run test:coverage & npm run coveralls
       name: Run Unit Tests, generate coverage and publish to coveralls
 
     - script: npm run test:mutation-report"
       name: Run Mutation Tests and publish reports
 
-    - stage: tests
-    # - script: npm run test
-    #   name: Run Unit Tests
+    - stage: 'tests'
+    - script: npm run test
+      name: Run Unit Tests
 
     - script: npm run test:mutation
       name: Run Mutation Tests
 
-    - stage: publish
+    - stage: 'publish'
     - script: echo "Some console message"
       name: 'Publish to gh-pages'
