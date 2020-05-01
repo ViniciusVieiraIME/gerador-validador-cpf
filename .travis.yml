@@ -6,15 +6,15 @@ jobs:
   include:
     - stage: Checks
       # name: Check Doc links
-      - script:
-        - gem install awesome_bot
-        - awesome_bot *.md --allow-redirect --white-list travis-ci,packagephobia.now
+      # - script:
+      #   - gem install awesome_bot
+      #   - awesome_bot *.md --allow-redirect --white-list travis-ci,packagephobia.now
 
       # name: Check Formatting
       script: npm run check-formatting
 
       # name: Check Typing
-      # script: npm run check-typing
+      script: npm run check-typing
 
       # name: Lint
       # script: npm run lint
