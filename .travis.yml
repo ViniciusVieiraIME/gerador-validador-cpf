@@ -5,36 +5,32 @@ node_js:
 jobs:
   include:
     - stage: checks
-      - name: Check Doc links
-        script:
-          - gem install awesome_bot
-          - awesome_bot *.md --allow-redirect --white-list travis-ci,packagephobia.now
+      script: npm run check-formatting
 
-      - name: Check Formatting
-        script: npm run check-formatting
-
-      - name: Check Typing
-        script: npm run check-typing
-
-      - name: Lint
-        script: npm run lint
-
-        - name: Check Prepublish
-        script: npm run prepublishOnly
-
-    - stage: tests
-      - name: Run Unit Test, generate coverage and publish to coveralls
-        if: (branch = master)
-        script: npm run test:coverage & npm run coveralls
-
-      - name: Run Unit Tests
-        if: (NOT branch = master)
-        script: npm run test
-
-      - name: Run Mutation Tests and publish reports
-        if: (branch = master)
-        script: npm run test:mutation-report"
-
-    - stage: publish
-      name: 'Publish to gh-pages'
-      script: echo "Some console message"
+    - stage: checks
+      script: npm run check-typing
+    #   - name: Check Doc links
+    #     script:
+    #       - gem install awesome_bot
+    #       - awesome_bot *.md --allow-redirect --white-list travis-ci,packagephobia.now
+    #   - name: Check Formatting
+    #     script: npm run check-formatting
+    #   - name: Check Typing
+    #     script: npm run check-typing
+    #   - name: Lint
+    #     script: npm run lint
+    #     - name: Check Prepublish
+    #     script: npm run prepublishOnly
+    # - stage: tests
+    #   - name: Run Unit Test, generate coverage and publish to coveralls
+    #     if: (branch = master)
+    #     script: npm run test:coverage & npm run coveralls
+    #   - name: Run Unit Tests
+    #     if: (NOT branch = master)
+    #     script: npm run test
+    #   - name: Run Mutation Tests and publish reports
+    #     if: (branch = master)
+    #     script: npm run test:mutation-report"
+    # - stage: publish
+    #   name: 'Publish to gh-pages'
+    #   script: echo "Some console message"
