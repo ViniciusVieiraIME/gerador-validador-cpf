@@ -20,11 +20,7 @@ jobs:
 
     - name: Run test and generate coverage
       if: (branch = master)
-      script: npm run test:coverage
-
-    - name: Publish Coverage
-      if: (branch = master)
-      script: npm run coveralls
+      script: npm run test:coverage & npm run coveralls
 
     - name: Run test
       if: (NOT branch = master)
@@ -37,5 +33,5 @@ jobs:
     - name: Check Prepublish
       script: npm run prepublishOnly
 
-after_success:
-  - echo "Some console message"
+  after_success:
+    - echo "Some console message"
