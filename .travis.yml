@@ -6,6 +6,8 @@ stages:
   - checks
   - name: tests
     if: NOT branch = master
+  - name: tests and reports
+    if: branch = master
   - publish
 
 jobs:
@@ -28,16 +30,16 @@ jobs:
     - script: npm run prepublishOnly
       name: Check Prepublish
 
-      # - stage: Tests
-    #   if: branch = master
-    #   - script: npm run test:coverage & npm run coveralls
-    #     name: Run Unit Tests, generate coverage and publish to coveralls
+    - stage: tests and reports
+    - script: npm run test:coverage & npm run coveralls
+      name: Run Unit Tests, generate coverage and publish to coveralls
 
-    #   - script: npm run test:mutation-report"
-    #     name: Run Mutation Tests and publish reports
+    - script: npm run test:mutation-report"
+      name: Run Mutation Tests and publish reports
+
     - stage: tests
-    - script: npm run test
-      name: Run Unit Tests
+    # - script: npm run test
+    #   name: Run Unit Tests
 
     - script: npm run test:mutation
       name: Run Mutation Tests
