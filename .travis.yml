@@ -8,7 +8,7 @@ stages:
     if: NOT branch = master
   - name: tests and reports
     if: branch = master
-  - deploy website
+  - name: deploy website
     if: branch = master
 
 jobs:
@@ -48,10 +48,10 @@ jobs:
     - stage: deploy website
     - script: npm run build:site
       name: Compile website
-    deploy:
-      provider: pages
-      skip_cleanup: true
-      github_token: $GITHUB_TOKEN
-      keep_history: true
-      on:
-        branch: master
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN
+        keep_history: true
+        on:
+          branch: master
